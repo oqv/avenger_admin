@@ -1,0 +1,7 @@
+<%
+	@collection = [['Não', nil],['Sim', true]]
+	@selected = nil
+	@selected = params[model.underscore][field] if params[model.underscore].present? and params[model.underscore][field].present? and not params[model.underscore][field].blank?
+%>
+
+<%= select_tag "#{model.underscore}[#{field.to_s}]", options_for_select(@collection, @selected) %>

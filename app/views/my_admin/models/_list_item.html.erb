@@ -1,0 +1,29 @@
+<tr>
+  <% if @model.my_admin.can?(:destroy, my_admin_user) %>
+    <td class="with-checkbox">
+      <%= check_box_tag :remove, object.id %>
+    </td>
+  <% end %>
+
+  <% @model.my_admin.list_display.each_with_index do |field, index| %>
+    <td>
+      <%= field_content(@application, @model, field, object) %>
+    </td>
+  <% end %>
+
+  <% if @model.my_admin.can?(:destroy, my_admin_user) or @model.my_admin.can?(:update, my_admin_user) %>
+    <td>
+      <%= link_to(edit_model_link(@application, @model, object), :class => "btn btn-mini btn-inverse") do %>
+        <i class="icon-edit"></i>
+        <%= I18n.t('my_admin.labels.models.edit') %>
+      <% end if @model.my_admin.can?(:update, my_admin_user) %>
+
+      <%= link_to(show_model_link(@application, @model, object), :method => :delete, :confirm => I18n.t('my_admin.messages.models.confirm_remove', :model => @model.title), :class => "btn btn-mini btn-danger") do %>
+        <i class="icon-trash"></i>
+        <%= I18n.t('my_admin.labels.models.remove') %>
+
+      <% end if @model.my_admin.can?(:destroy, my_admin_user) %>
+
+    </td>
+  <% end %>
+</tr>
