@@ -8,7 +8,7 @@ class MyAdmin::ConfigurationsController < MyAdmin::MyAdminController
   
   def update
     
-    MyAdmin::Configuration.where(key: params[:pk]).first.update_attribute(:value, params[:value])
+    MyAdmin::Configuration.find_by_key(params[:pk]).update_attribute(:value, params[:value])
     
     render :nothing => true
   end

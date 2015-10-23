@@ -1,12 +1,5 @@
-class MyAdmin::Log
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include MyAdmin::Model
-
-  field :object,      :type => String
-  field :action,      :type => String
-  field :model,       :type => String
-  field :application, :type => String
+class MyAdmin::Log < ActiveRecord::Base
+  self.table_name = "my_admin_logs"
   
   belongs_to :user
   
@@ -17,6 +10,7 @@ class MyAdmin::Log
   }
   
   config_my_admin do |admin|
+    admin.application = "authentication"
     admin.list_display = [:user, :application_name, :model_name, :action_name, :object, :created_at]
     admin.filters = []
     admin.permissions = [:list]

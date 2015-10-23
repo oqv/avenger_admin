@@ -28,9 +28,9 @@
 		<![endif]-->
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="/assets/my_admin/favicon.ico" />
+		<link rel="shortcut icon" href="<%= asset_path 'my_admin/favicon.ico' %>" />
 		<!-- Apple devices Homescreen icon -->
-		<link rel="apple-touch-icon-precomposed" href="/assets/my_admin/apple-touch-icon-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" href="<%= asset_path 'my_admin/apple-touch-icon-precomposed.png' %>" />
      
      <%= yield(:head) %>
 
@@ -40,7 +40,7 @@
   	<div class="wrapper">
 			<h1>
 				<%= link_to send("#{admin_prefix}_path") do %>
-					<img src="/assets/my_admin/logo-big.png" alt="" class='retina-ready' width="59" height="49"><%= MyAdmin.title %>
+					<img src="<%= asset_path 'my_admin/logo-big.png' %>" alt="" class='retina-ready' width="59" height="49"><%= MyAdmin.title %>
 				<% end %>
 			</h1>
 			

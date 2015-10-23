@@ -1,6 +1,6 @@
-<% has_many_model = model.relations[field.to_s].klass %>
+<% has_many_model = model.reflections[field.to_s].klass %>
 
-<% limit = model.relations[field.to_s].options[:limit] || 0 %>
+<% limit = model.reflections[field.to_s].options[:limit] || 0 %>
 
 <% can_destroy = field_setting(model, field, :can_destroy) %>
 <% can_add = field_setting(model, field, :can_add) %>
@@ -10,7 +10,7 @@
 <% can_add = true if can_add.nil? %>
 <% read_only = false if read_only.nil? %>
 
-<% object.send(field.to_sym).build if can_add and (limit == 0 or limit > object.send(field.to_sym).count) and !read_only %>
+<% object.send(field.to_sym).build if object.send(field.to_sym).count == 0 and can_add and (limit == 0 or limit > object.send(field.to_sym).count) and !read_only %>
 
 <div class="dataTables_wrapper">
 	<!-- <table class="table table-hover table-nomargin table-bordered dataTable dataTable-noheader dataTable-nosortall"> -->
@@ -69,7 +69,7 @@
 
 	<div class="dataTables_info">
 		<input type="hidden" value="<%= limit %>" class="limit" />
-		<% link_to('javascript:void[0];', :class => "btn btn-mini btn-success add_new_has_many_item") do %>
+		<%= link_to('javascript:void[0];', :class => "btn btn-mini btn-success add_new_has_many_item") do %>
 			<i class="icon-plus"></i>
 			Adicionar
 		<% end if can_add and (limit == 0 or limit > object.send(field.to_sym).count + 1) and !read_only %>

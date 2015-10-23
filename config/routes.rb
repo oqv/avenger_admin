@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   mount Ckeditor::Engine => '/ckeditor'
   
   namespace MyAdmin.url_prefix, :module => "my_admin" do

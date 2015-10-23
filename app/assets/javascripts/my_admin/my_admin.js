@@ -18,10 +18,11 @@ var updateFieldRemote = function(path, model, field, field_remote_name, value)
     $(id).html('<option value="0">Carregando ... </option>');
 		$(id).parent().find('.select2-choice span').html("Carregando ... ");
 
+
     $(id).val('0');
     eval($(id).attr('onchange'));
     
-    if(value != "0")
+    if(eval(value) > 0)
     {
         $(id).attr('disabled', '');
         $.post(path + "/remote", {fk: field, field: field_remote_name, fk_id: field + "_id", value: value}, null, 'script');
@@ -57,30 +58,6 @@ var prepareFields = function(elem)
 	$(elem).find('.datepick').datepicker({ language: 'pt-BR' });
 	
 	$(elem).find('input.price_format').maskMoney({thousands:'', decimal:'.', allowNegative:true, allowZero:true});
-
-
- //  $(elem).find('.color_picker').each(function(i, el){
-
- //      var color = colorToHex( $(el).find('div').css('backgroundColor') );
-
- //      $(el).ColorPicker({
- //        color: color,
- //    	onShow: function (colpkr) {
- //    		$(colpkr).fadeIn(500);
- //    		return false;
- //    	},
- //    	onHide: function (colpkr) {
- //    		$(colpkr).fadeOut(500);
- //    		return false;
- //    	},
- //    	onChange: function (hsb, hex, rgb) {
- //    		$(el).find('div').css('backgroundColor', '#' + hex);
- //    		$(el).find('input').val(hex);
- //    	}
- //      });
-      
- //  });
-
 }
 
 var zeroPad = function(num, places) {
@@ -142,11 +119,11 @@ function postPage(link, params, method) {
 	form.submit();
 }
 
-function loadMyAdmin() {
+$(document).on('ready page:load', function(){
 	
 	prepareFields($('body'));
 	
-	$('.btn-remove-all-selected').on('click', function(e){
+	$('.btn-remove-all-selected').click(function(e){
 		e.preventDefault();
 		
 		var selected = getTableSelected()
@@ -162,13 +139,12 @@ function loadMyAdmin() {
 			}
 		}
 	});
-
+	
 	$('.box.list .actions #per_page').on('change', function(e){
 		window.location.href = $(this).val();
 	});
 	
-	
-	$('.thefilter .with-checkbox input[type=checkbox]').on('click', function(e){
+	$('.thefilter .with-checkbox input[type=checkbox]').click(function(e){
 		$(this).closest('table').find('.with-checkbox input[type=checkbox]').prop('checked', $(this).prop('checked'));
 	});
 	
@@ -177,7 +153,7 @@ function loadMyAdmin() {
 	});
 
 	//HAS MANY ITEM
-  $(".add_new_has_many_item").on('click', function(e){
+  $(".add_new_has_many_item").click(function(e){
 			e.preventDefault();
 			
       var limit = eval($(this).closest('.controls').find('.limit').val());
@@ -206,7 +182,5 @@ function loadMyAdmin() {
       prepareFields(clone);
   });
 	
-}
+})
 
-$(document).ready(loadMyAdmin);
-document.addEventListener("page:change", loadMyAdmin);

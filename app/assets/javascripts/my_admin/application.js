@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-// require turbolinks
+//= require turbolinks
 //= require ckeditor/init
 //= require my_admin/plugins/nicescroll/jquery.nicescroll.min
 //= require my_admin/plugins/validation/jquery.validate.min
@@ -42,6 +42,7 @@
 //= require my_admin/plugins/pageguide/jquery.pageguide
 //= require my_admin/plugins/fullcalendar/fullcalendar.min
 //= require my_admin/plugins/chosen/chosen.jquery.min
+//= require my_admin/plugins/colorpicker/bootstrap-colorpicker
 //= require my_admin/plugins/select2/select2.min
 //= require my_admin/plugins/icheck/jquery.icheck.min
 //= require my_admin/plugins/multiselect/jquery.multi-select
@@ -51,7 +52,6 @@
 //= require my_admin/plugins/datepicker/locales/bootstrap-datepicker.pt-BR
 //= require my_admin/plugins/timepicker/bootstrap-timepicker.min
 //= require my_admin/plugins/xeditable/bootstrap-editable.min
-//= require my_admin/plugins/colorpicker/bootstrap-colorpicker
 //= require my_admin/jquery.maskMoney
 //= require my_admin/jquery.dateFormat
 //= require my_admin/locale/pt-br/validate
@@ -59,3 +59,4 @@
 //= require my_admin/main
 //= require my_admin/rails
 //= require my_admin/my_admin
+//= require my_admin

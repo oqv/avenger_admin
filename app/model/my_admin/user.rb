@@ -1,47 +1,25 @@
 # -*- coding: utf-8 -*-
 require 'digest'
 
-class MyAdmin::User #< MyAdmin::Model
-  include Paperclip::Glue
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include MyAdmin::Model
-
-  field :first_name,                :type => String
-  field :last_name,                 :type => String
-  field :username,                  :type => String
-  field :superuser,                 :type => Boolean
-
-  field :email,                     :type => String
-  field :active,                    :type => Boolean, :default => true
-
-  field :salt,                      :type => String
-  field :encrypted_password,        :type => String
-
-  field :photo_file_name,           :type => String
-  field :photo_content_type,        :type => String
-  field :photo_file_size,           :type => Integer
-  field :photo_updated_at,          :type => DateTime
-  field :encrypted_recover,         :type => String
-  
+class MyAdmin::User < ActiveRecord::Base
+  self.table_name = "my_admin_users"
   
   has_attached_file :photo,
     :styles => { :my_admin => "200x200#", :mini => "27x27#" },
     :path => ":rails_root/public/uploads/:class/:id/:basename_:style.:extension",
     :url => "/uploads/:class/:id/:basename_:style.:extension",
-    :default_url => "/assets/:class/missing_:style.png"  
+    :default_url => ":class/missing_:style.png"
     #:path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     #:url => "/system/:attachment/:id/:style/:filename"
 
-      
+    
+  
   before_save :encrypt_password, :if => :should_validate_password?
   
-  has_many :user_groups, :dependent => :destroy, :class_name => "MyAdmin::UserGroup"
-  has_and_belongs_to_many :groups, :class_name => "MyAdmin::Group"
-
-  #has_many :groups, :through => :user_groups
+  has_many :user_groups, :dependent => :destroy
+  has_many :groups, :through => :user_groups
   
-  has_many :logs, :class_name => "MyAdmin::Log"
+  has_many :logs
   
   attr_accessor :old_password, :password
   # attr_accessible :full_name, :first_name, :last_name, :username, :photo, :superuser, :email, :old_password, :password, :password_confirmation, :active, :group_ids
@@ -50,12 +28,13 @@ class MyAdmin::User #< MyAdmin::Model
   validates_uniqueness_of :username
   validates_uniqueness_of :email
   validates_presence_of :first_name, :username, :email
-  #validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
-  validates_format_of :email, :with => /@/
+  validates_format_of :email, :with => /([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i
+
   validates :password, :presence	=> true, :confirmation => true, :length	=> { :within => 6..40 }, :if => :should_validate_password?
   validates_attachment_content_type :photo, :content_type => ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png'], :allow_nil => true
 
   config_my_admin do |admin|
+    admin.application = "authentication"
     admin.list_display = [:full_name, :username, :email, :superuser, :active]
     admin.filters = [:full_name, :username, :email]
     admin.export_display = [:full_name, :username, :email, :superuser_export, :active_export ]
@@ -71,7 +50,7 @@ class MyAdmin::User #< MyAdmin::Model
                     :password_confirmation => {:type => :password}}
   end
   scope :my_admin_order_full_name, lambda { |params|
-    { :order_by => "first_name #{params[:order]}, last_name #{params[:order]}" } if params[:order].present?
+    { :order => "first_name #{params[:order]}, last_name #{params[:order]}" } if params[:order].present?
   }
   
   scope :my_admin_filter_full_name, lambda { |params|
@@ -120,12 +99,12 @@ class MyAdmin::User #< MyAdmin::Model
   end
   
   def self.authenticate(username, submitted_password) 
-    user = where(username: username).first
+    user = find_by_username(username) 
     user && user.has_password?(submitted_password) ? user : nil
   end
   
   def self.authenticate_with_salt(id, cookie_salt) 
-    user = find(id) rescue nil
+    user = find_by_id(id) 
     (user && user.salt == cookie_salt) ? user : nil
   end
   
@@ -169,7 +148,7 @@ class MyAdmin::User #< MyAdmin::Model
     end
     
     def check_old_password
-       errors.add(:old_password, I18n.t("mongoid.errors.messages.invalid")) unless has_password?(old_password) 
+       errors.add(:old_password, I18n.t("activerecord.errors.messages.invalid")) unless has_password?(old_password) 
     end
   
 end

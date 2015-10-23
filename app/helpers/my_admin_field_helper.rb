@@ -2,7 +2,7 @@
 module MyAdminFieldHelper
   
   def fieldset_title(application, model, fieldset)
-    I18n.t!("mongoid.fieldsets.#{model.i18n}.#{fieldset.to_s}") rescue fieldset.to_s
+    I18n.t!("activerecord.fieldsets.#{model.i18n}.#{fieldset.to_s}") rescue fieldset.to_s
   end
   
   def field_can_order(application, model, field)
@@ -11,7 +11,7 @@ module MyAdminFieldHelper
   end
   
   def field_title(model, field)
-    #I18n.t!("mongoid.attributes.#{model.i18n}.#{field}") rescue field.to_s.titleize
+    #I18n.t!("activerecord.attributes.#{model.i18n}.#{field}") rescue field.to_s.titleize
     model.human_attribute_name(field)
   end
   
@@ -20,14 +20,14 @@ module MyAdminFieldHelper
     unless block.blank?
       collection  = instance_exec object, &(block) 
     else
-  	  collection ||= model.relations[field.to_s].klass.all.map { |i| [i.to_s, i.id] } unless model.relations[field.to_s].blank?
+  	  collection ||= model.reflections[field.to_s].klass.all.map { |i| [i.to_s, i.id] } unless model.reflections[field.to_s].blank?
     end
   	collection ||= []
   	collection
   end
   
   def field_hint(application, model, field, type)
-    content_tag(:code, I18n.t!("mongoid.hint.#{model.i18n}.#{field}.#{type}"), :class => "help-block") rescue ""
+    content_tag(:code, I18n.t!("activerecord.hint.#{model.i18n}.#{field}.#{type}"), :class => "help-block") rescue ""
   end
   
   def field_setting(model, field, setting)
@@ -40,25 +40,27 @@ module MyAdminFieldHelper
   
   def field_type(application, model, field, object = nil)
     
-    column = model.fields.find{ |key, c| c.name == field.to_s }.last rescue nil
+    column = model.columns.find{ |c| c.name == field.to_s }
 
     object_type = object.send(field).class.name.underscore unless object.blank?
     object_type = column.type unless column.blank?
-    object_type = model.relations[field.to_s].macro if model.relations.has_key? field.to_s
+    object_type = model.reflections[field.to_s].macro if model.reflections.has_key? field.to_s
     object_type = field_setting(model, field, :type) unless field_setting(model, field, :type).blank?
-    object_type.to_s.downcase
+    object_type
+    
   end
   
   def filter_field_type(application, model, field, object = nil)
     
-    column = model.fields.find{ |key, c| c.name == field.to_s }.last rescue nil
+    column = model.columns.find{ |c| c.name == field.to_s }
 
     object_type = object.send(field).class.name.underscore unless object.blank?
     object_type = column.type unless column.blank?
-    object_type = model.relations[field.to_s].macro if model.relations.has_key? field.to_s
+    object_type = model.reflections[field.to_s].macro if model.reflections.has_key? field.to_s
     object_type = field_setting(model, field, :type) unless field_setting(model, field, :type).blank?
     object_type = field_setting(model, field, :filter_type) unless field_setting(model, field, :filter_type).blank?
-    object_type.to_s.downcase
+    object_type
+    
   end
   
   def edit_field_struct(application, model, field, object, form, show_label=true)
@@ -85,7 +87,6 @@ module MyAdminFieldHelper
     template = "my_admin/fields/#{field}" unless lookup_context.exists? template
     
     object_type = field_type(application, model, field, object)
-
     
     template = "my_admin/#{application.key}/#{model.model_tableize}/fields/type/#{object_type}" unless lookup_context.exists? template
     template = "my_admin/#{application.key}/fields/type/#{object_type}" unless lookup_context.exists? template
@@ -104,7 +105,6 @@ module MyAdminFieldHelper
     template = "my_admin/fields/edit/#{field}" unless lookup_context.exists? template
     
     object_type = field_type(application, model, field, object)
-
     
     template = "my_admin/#{application.key}/#{model.model_tableize}/fields/edit/type/#{object_type}" unless lookup_context.exists? template
     template = "my_admin/#{application.key}/fields/edit/type/#{object_type}" unless lookup_context.exists? template

@@ -8,14 +8,14 @@ class MyAdmin::SessionsController < MyAdmin::MyAdminController
   def create
     user = MyAdmin::User.authenticate(params[:session][:username], params[:session][:password])
     if user.nil? 
-      flash.now[:error] = I18n.t("mongoid.errors.my_admin.user.invalid_username_password")
+      flash.now[:error] = I18n.t("activerecord.errors.my_admin.user.invalid_username_password")
       render :new
     else
       if user.is_active?
         my_admin_sign_in user
         redirect_to send("#{admin_prefix}_path")
       else
-        flash.now[:error] = I18n.t("mongoid.errors.my_admin.user.inactive_user")
+        flash.now[:error] = I18n.t("activerecord.errors.my_admin.user.inactive_user")
         render :new
       end
     end
@@ -39,14 +39,14 @@ class MyAdmin::SessionsController < MyAdmin::MyAdminController
   def open
     user = MyAdmin::User.authenticate(my_admin_user.username, params[:session][:password])
     if user.nil? 
-      flash.now[:error] = I18n.t("mongoid.errors.my_admin.user.invalid_password")
+      flash.now[:error] = I18n.t("activerecord.errors.my_admin.user.invalid_password")
       render :unlock
     else
       if user.is_active?
         my_admin_sign_in user
         redirect_to send("#{admin_prefix}_path")
       else
-        flash.now[:error] = I18n.t("mongoid.errors.my_admin.user.inactive_user")
+        flash.now[:error] = I18n.t("activerecord.errors.my_admin.user.inactive_user")
         my_admin_sign_out
         render :new
       end

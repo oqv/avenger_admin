@@ -16,10 +16,7 @@
      <%#= raw javascript_include_merged :my_admin %>
      
      <%= stylesheet_link_tag    "my_admin/application", media: "all", "data-turbolinks-track" => true %>
-		 <%= stylesheet_link_tag    "my_admin_application", media: "all", "data-turbolinks-track" => true %>
-
      <%= javascript_include_tag "my_admin/application", "data-turbolinks-track" => true %>
-     <%= javascript_include_tag "my_admin_application", "data-turbolinks-track" => true %>
 
 		<!--[if lte IE 9]>
 			<script src="javascripts/my_admin/plugins/placeholder/jquery.placeholder.min.js"></script>
@@ -31,9 +28,9 @@
 		<![endif]-->
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="/assets/my_admin/favicon.ico" />
+		<link rel="shortcut icon" href="<%= asset_path 'my_admin/favicon.ico' %>" />
 		<!-- Apple devices Homescreen icon -->
-		<link rel="apple-touch-icon-precomposed" href="/assets/my_admin/apple-touch-icon-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" href="<%= asset_path 'my_admin/apple-touch-icon-precomposed.png' %>" />
      
      <%= yield(:head) %>
 
@@ -53,15 +50,6 @@
 						<div class="pull-left">
 							<h1><%= yield(:title) %></h1>
 						</div>
-						<div class="pull-right">
-							<ul class="minitiles">
-								<%= yield(:minitiles) %>
-							</ul>
-							<ul class="stats">
-								<%= yield(:stats) %>
-							</ul>
-						</div>
-
 					</div>
 					
 					<% if flash[:success] %>

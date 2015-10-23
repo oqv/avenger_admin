@@ -8,14 +8,14 @@ class MyAdmin::RecoversController < MyAdmin::MyAdminController
     user = MyAdmin::User.recover(params[:recover][:username], params[:recover][:email])
     
     if user.nil? 
-      flash.now[:error] = I18n.t("mongoid.errors.my_admin.user.invalid_username_email")
+      flash.now[:error] = I18n.t("activerecord.errors.my_admin.user.invalid_username_email")
       render :new
     else
       if user.is_active?
         MyAdmin::RecoverMailer.send_recover_mail(user).deliver
         redirect_to send("new_#{admin_prefix}_sessions_path"), :flash => { :success => I18n.t("my_admin.messages.recover.send_email") }
       else
-        flash.now[:error] = I18n.t("mongoid.errors.my_admin.user.inactive_user")
+        flash.now[:error] = I18n.t("activerecord.errors.my_admin.user.inactive_user")
         render :new
       end
     end
@@ -42,9 +42,9 @@ class MyAdmin::RecoversController < MyAdmin::MyAdminController
     def get_user
       user = MyAdmin::User.find_by_encrypted_recover(params[:id])
       if(user.nil?)
-        redirect_to send("new_#{admin_prefix}_sessions_path"), :flash => { :error => I18n.t("mongoid.errors.my_admin.user.invalid_recover_id") }
+        redirect_to send("new_#{admin_prefix}_sessions_path"), :flash => { :error => I18n.t("activerecord.errors.my_admin.user.invalid_recover_id") }
       elsif !user.is_active?
-        redirect_to send("new_#{admin_prefix}_sessions_path"), :flash => { :error => I18n.t("mongoid.errors.my_admin.user.inactive_user") }
+        redirect_to send("new_#{admin_prefix}_sessions_path"), :flash => { :error => I18n.t("activerecord.errors.my_admin.user.inactive_user") }
       end
       user
     end

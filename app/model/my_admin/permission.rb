@@ -1,14 +1,8 @@
-class MyAdmin::Permission
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :model,       :type => String
-  field :name,        :type => String
-  field :application, :type => String
+class MyAdmin::Permission < ActiveRecord::Base
+  self.table_name = "my_admin_permissions"
   
   has_many :group_permissions, :dependent => :destroy
-  has_and_belongs_to_many :groups, :class_name => "MyAdmin::Group"
-  #has_many :groups, :through => :group_permissions
+  has_many :groups, :through => :group_permissions
   
   validates_presence_of :model, :name, :application
   validates_uniqueness_of :name, :scope => [:model, :name, :application]

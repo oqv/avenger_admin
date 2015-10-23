@@ -1,17 +1,1 @@
-<%
-	#collection = model.reflections[field.to_sym].klass.all.map { |i| [i.to_s, i.id] } 
-	#@field_name = "#{field.to_s.singularize}_ids"
-	@color = object.send(field)
-	if @color.blank?
-	  @color = "#FFFFFF"
-  end
-%>
-<!-- <div class="color_picker">
-  <div style="background-color: #<%= @color %>"></div>
-  <%= hidden_field_tag "#{model.underscore}[#{field}]", @color %>
-</div> -->
-
-<div class="input-append color colorpick" data-color="<%= @color %>">
-	<%= form.text_field field, :class => "span12", :value => @color %>
-	<span class="add-on"><i style="background-color: <%= @color %>"></i></span>
-</div>
+<%= form.text_field field, :class => "input-mini colorpick", :maxlength => 7 %>

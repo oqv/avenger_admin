@@ -1,9 +1,5 @@
-class MyAdmin::Locale
-	include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :name,        :type => String
-  field :acronym, 		:type => String
+class MyAdmin::Locale < ActiveRecord::Base
+  self.table_name = "my_admin_locales"
   
   def to_s
     self.name

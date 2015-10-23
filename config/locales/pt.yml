@@ -80,7 +80,6 @@ pt:
         create: "Criar"
         edit: "Alterar"
         remove: "Excluir"
-        renew: "Renovar"
       session:
         username: 'Usuário'
         password: 'Senha'
@@ -121,7 +120,7 @@ pt:
       user:
         first_access: "Primeiro Acesso"
         login: "Login"
-  mongoid:
+  activerecord:
     hint:
       my_admin:
         user:
@@ -180,7 +179,7 @@ pt:
         user:
           invalid_username_password: "Combinação usuário/senha inválida"
           invalid_username_email: "Combinação usuário/email inválida"
-          invalid_recover_id: "Código de recuperação de senha inválido ou expirado"
+          invalid_recover_id: "Código de recuperação de senha inválida ou expirada"
           invalid_password: "Senha inválida"
           inactive_user: "Usuário está inativo"
       template:

@@ -6,7 +6,7 @@ en:
     label:
       create: "Create"
       login: "Login"
-  mongoid:
+  activerecord:
     errors:
       template:
         header: ""

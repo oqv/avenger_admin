@@ -40,7 +40,6 @@ class MyAdmin::MyAdminController < ActionController::Base
     
     def set_locale
       I18n.locale = :pt
-      Time.zone = Rails.application.config.time_zone
     end
     
     def get_layout

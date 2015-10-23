@@ -20,6 +20,7 @@
 	klass = field_setting(model, field, :class) || "input-xlarge"
 %>
 
+
 <% if object.respond_to? field_name %>
   <%= form.select field_name, options_for_select(collection, collection_selected), {}, { :onchange => onchange, :class => "select2-me #{klass}", "data-placeholder" => "Selecione" } %>
 <% else %>

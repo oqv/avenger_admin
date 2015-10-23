@@ -11,7 +11,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
           @objects = @model.my_admin_order(params)
         end
       else
-        @objects = @model.order_by("id desc")
+        @objects = @model.order("#{@model.table_name}.#{@model.primary_key} desc")
       end
 
       headers = []
@@ -36,17 +36,18 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
           @objects = @model.my_admin_order(params)
         end
       else
-        @objects = @model.order_by("id desc")
+        @objects = @model.order("#{@model.table_name}.#{@model.primary_key} desc")
       end
       
       if not @model.my_admin.filters.blank? and not params[@model.underscore].blank?
         @model.my_admin.filters.each do |field|
           @objects = filter_filter(@application, @model, field, @objects)
         end
-      end      
-      per_page = params[:per_page].blank? ? @model.my_admin.per_page : params[:per_page]
+      end
 
-      @all_objects = @objects
+      per_page = params[:per_page] || @model.my_admin.per_page
+      per_page = @model.my_admin.per_page if params[:per_page].to_i <= 0 rescue @model.my_admin.per_page
+      
       @objects = @objects.paginate(:per_page => per_page, :page => params[:page])
       
       cache_my_admin_params
@@ -159,7 +160,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
       end
     end
     
-    @collection ||= @model.relations[params[:field].to_s].klass.all({ params[:fk_id].to_sym => params[:value] }).map { |i| [i.to_s, i.id] }
+    @collection ||= @model.reflections[params[:field].to_s].klass.where(params[:fk_id].to_sym => params[:value]).map { |i| [i.to_s, i.id] }
     render_model_template(:remote)
   end
   
