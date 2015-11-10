@@ -14,8 +14,8 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "my_admin_mongoid"
   s.required_ruby_version = ">= 1.9.3"
-  
-  s.add_dependency "rails",                   "~> 4.0.0"
+
+  s.add_dependency "rails",                   "~> 4.2.2"
   s.add_dependency "breadcrumbs"  ,           "0.1.6"
   s.add_dependency "dynamic_form" ,           "1.1.4"
   s.add_dependency "paperclip" ,              "3.5.1"
