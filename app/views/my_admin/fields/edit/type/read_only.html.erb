@@ -1,5 +1,5 @@
 <% type = "default" %>
-<% type = model.relations[field.to_sym].macro if model.relations.has_key? field.to_sym %>
+<% type = model.relations[field.to_s].macro if model.relations.has_key? field.to_s %>
 <% klass = field_setting(model, field, :class) %>
 
 <%= form.text_field field, :disabled => true, :class => klass %>

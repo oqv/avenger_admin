@@ -159,7 +159,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
       end
     end
     
-    @collection ||= @model.relations[params[:field].to_s].klass.all({ params[:fk_id].to_sym => params[:value] }).map { |i| [i.to_s, i.id] }
+    @collection ||= @model.relations[params[:field].to_s].klass.all({ params[:fk_id].to_s => params[:value] }).map { |i| [i.to_s, i.id] }
     render_model_template(:remote)
   end
   

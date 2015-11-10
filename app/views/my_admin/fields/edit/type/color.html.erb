@@ -1,5 +1,5 @@
 <%
-	#collection = model.reflections[field.to_sym].klass.all.map { |i| [i.to_s, i.id] } 
+	#collection = model.reflections[field.to_s].klass.all.map { |i| [i.to_s, i.id] } 
 	#@field_name = "#{field.to_s.singularize}_ids"
 	@color = object.send(field)
 	if @color.blank?
