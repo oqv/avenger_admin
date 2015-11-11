@@ -24,11 +24,13 @@ module MyAdmin
     end
 
     def application_url
-      I18n.t!("my_admin.urls.applications."+@application) rescue @application
+      #I18n.t!("my_admin.urls.applications."+@application) rescue @application
+      @application
     end
 
     def url
-      I18n.t!("my_admin.urls.models.#{@class.model_tableize}") rescue @class.model_tableize
+      #I18n.t!("my_admin.urls.models.#{@class.model_tableize}") rescue @class.model_tableize
+      @class.model_tableize
     end
 
     def url_single

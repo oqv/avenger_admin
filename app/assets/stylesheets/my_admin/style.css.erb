@@ -23,8 +23,8 @@
  */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("/assets/my_admin/fontawesome-webfont.eot?v=3.0.1");
-  src: url("/assets/my_admin/fontawesome-webfont.eot?#iefix&v=3.0.1") format("embedded-opentype"), url("/assets/my_admin/fontawesome-webfont.woff?v=3.0.1") format("woff"), url("/assets/my_admin/fontawesome-webfont.ttf?v=3.0.1") format("truetype");
+  src: url("<%= asset_path 'my_admin/fontawesome-webfont.eot?v=3.0.1' %>");
+  src: url("<%= asset_path 'my_admin/fontawesome-webfont.eot?#iefix&v=3.0.1' %>") format("embedded-opentype"), url("<%= asset_path 'my_admin/fontawesome-webfont.woff?v=3.0.1' %>") format("woff"), url("<%= asset_path 'my_admin/fontawesome-webfont.ttf?v=3.0.1' %>") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -1320,8 +1320,8 @@ html, html .halflings {
 
 @font-face {
   font-family: 'Glyphicons';
-  src: url("/assets/my_admin/glyphicons-regular.eot");
-  src: url("/assets/my_admin/glyphicons-regular.eot?#iefix") format("embedded-opentype"), url("/assets/my_admin/glyphicons-regular.woff") format("woff"), url("/assets/my_admin/glyphicons-regular.ttf") format("truetype"), url("/assets/my_admin/glyphicons-regular.svg#glyphicons_halflingsregular") format("svg");
+  src: url("<%= asset_path 'my_admin/glyphicons-regular.eot' %>");
+  src: url("<%= asset_path 'my_admin/glyphicons-regular.eot?#iefix' %>") format("embedded-opentype"), url("<%= asset_path 'my_admin/glyphicons-regular.woff' %>") format("woff"), url("<%= asset_path 'my_admin/glyphicons-regular.ttf' %>") format("truetype"), url("<%= asset_path 'my_admin/glyphicons-regular.svg#glyphicons_halflingsregular' %>") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -4131,11 +4131,11 @@ label, input, button, select, textarea {
   padding-right: 69px;
   padding-left: 35px;
   padding-bottom: 2px;
-  background: url("/assets/my_admin/logo.png") no-repeat;
+  background: url("<%= asset_path 'my_admin/logo.png' %>") no-repeat;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
   #navigation #brand {
-    background: url("/assets/my_admin/logo@2x.png") no-repeat;
+    background: url("<%= asset_path 'my_admin/logo@2x.png' %>") no-repeat;
     background-size: 22px 22px;
   }
 }
@@ -5546,13 +5546,13 @@ label, input, button, select, textarea {
   background: #e1e1e1;
 }
 .table .sorting_asc {
-  background: url("/assets/my_admin/sorting-asc.png") no-repeat right center #eeeeee;
+  background: url("<%= asset_path 'my_admin/sorting-asc.png' %>") no-repeat right center #eeeeee;
 }
 .table .sorting_desc {
-  background: url("/assets/my_admin/sorting-desc.png") no-repeat right center #eeeeee;
+  background: url("<%= asset_path 'my_admin/sorting-desc.png' %>") no-repeat right center #eeeeee;
 }
 .table .sorting {
-  background: url("/assets/my_admin/sorting.png") no-repeat right center #eeeeee;
+  background: url("<%= asset_path 'my_admin/sorting.png' %>") no-repeat right center #eeeeee;
 }
 .table.dataTable .sorting, .table.dataTable .sorting_desc, .table.dataTable .sorting_asc {
   padding-right: 30px;

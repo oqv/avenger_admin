@@ -11,7 +11,7 @@
     border: 1px solid #bababa;
     padding: 2px 8px 3px 20px;
 	margin-right: 4px;
-    background: #f3f3f3 url('/assets/my_admin/plugins/plupload/buttons.png') no-repeat 0 center;
+    background: #f3f3f3 url("<%= asset_path 'my_admin/plugins/plupload/buttons.png' %>") no-repeat 0 center;
 	outline: 0;
 
     /* Optional rounded corners for browsers that support it */
@@ -29,7 +29,7 @@
 .plupload_disabled, a.plupload_disabled:hover {
     color: #737373;
     border-color: #c5c5c5;
-    background: #ededed url('/assets/my_admin/plugins/plupload/buttons-disabled.png') no-repeat 0 center;
+    background: #ededed url("<%= asset_path 'my_admin/plugins/plupload/buttons-disabled.png' %>") no-repeat 0 center;
 	cursor: default;
 }
 
@@ -43,7 +43,7 @@
 
 .plupload_container {
 	padding: 8px;
-	background: url('/assets/my_admin/plugins/plupload/transp50.png');
+	background: url("<%= asset_path 'my_admin/plugins/plupload/transp50.png' %>");
 	/*-moz-border-radius: 5px;*/
 }
 
@@ -53,9 +53,9 @@
 	width: 98%;
 }
 
-.plupload_header {background: #2A2C2E url('/assets/my_admin/plugins/plupload/backgrounds.gif') repeat-x;}
+.plupload_header {background: #2A2C2E url("<%= asset_path 'my_admin/plugins/plupload/backgrounds.gif' %>") repeat-x;}
 .plupload_header_content {
-	background: url('/assets/my_admin/plugins/plupload/backgrounds.gif') no-repeat 0 -317px;
+	background: url("<%= asset_path 'my_admin/plugins/plupload/backgrounds.gif' %>") no-repeat 0 -317px;
 	min-height: 56px;
 	padding-left: 60px;
 	color: #FFF;
@@ -82,7 +82,7 @@
 
 .plupload_filelist li {
 	padding: 10px 8px;
-	background: #F5F5F5 url('/assets/my_admin/plugins/plupload/backgrounds.gif') repeat-x 0 -156px;
+	background: #F5F5F5 url("<%= asset_path 'my_admin/plugins/plupload/backgrounds.gif' %>") repeat-x 0 -156px;
 	border-bottom: 1px solid #DDD;
 }
 
@@ -121,20 +121,20 @@
 	height: 16px;
 }
 
-li.plupload_uploading {background: #ECF3DC url('/assets/my_admin/plugins/plupload/backgrounds.gif') repeat-x 0 -238px;}
+li.plupload_uploading {background: #ECF3DC url("<%= asset_path 'my_admin/plugins/plupload/backgrounds.gif' %>") repeat-x 0 -238px;}
 li.plupload_done {color:#AAA}
 
 li.plupload_delete a {
-	background: url('/assets/my_admin/plugins/plupload/delete.gif');
+	background: url("<%= asset_path 'my_admin/plugins/plupload/delete.gif' %>");
 }
 
 li.plupload_failed a {
-	background: url('/assets/my_admin/plugins/plupload/error.gif');
+	background: url("<%= asset_path 'my_admin/plugins/plupload/error.gif' %>");
 	cursor: default;
 }
 
 li.plupload_done a {
-	background: url('/assets/my_admin/plugins/plupload/done.gif');
+	background: url("<%= asset_path 'my_admin/plugins/plupload/done.gif' %>");
 	cursor: default;
 }
 

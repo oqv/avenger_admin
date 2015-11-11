@@ -58,10 +58,10 @@ pt:
   my_admin:
     urls:
       applications:
-        authentication: "autenticacao"
+        authentication: "authentication"
       models:
-        users: "usuarios"
-        groups: "grupos"
+        users: "users"
+        groups: "groups"
     actions:
       update: "Atualizar"
       create: "Criar"

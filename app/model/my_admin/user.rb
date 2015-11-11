@@ -29,7 +29,7 @@ class MyAdmin::User #< MyAdmin::Model
     :styles => { :my_admin => "200x200#", :mini => "27x27#" },
     :path => ":rails_root/public/uploads/:class/:id/:basename_:style.:extension",
     :url => "/uploads/:class/:id/:basename_:style.:extension",
-    :default_url => "/assets/:class/missing_:style.png"
+    :default_url => ":class/missing_:style.png"
     #:path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     #:url => "/system/:attachment/:id/:style/:filename"
 

@@ -3,7 +3,7 @@
     */
 
 function sidebarFluid(){
-    if($("#left").hasClass("sidebar-fixed")){
+     if($("#left").hasClass("sidebar-fixed")){
         $("#left").removeClass("sidebar-fixed").css({
             "height": "auto",
             "top": "0",
@@ -248,7 +248,7 @@ function resizeContent(){
     }
 }
 
-function loadMyAdminMain(){
+$(document).on('ready page:load', function(){
 	
 	resizeContent();
 
@@ -399,18 +399,18 @@ function loadMyAdminMain(){
       toggleMobileNav();
   });
 
-  $(".content-slideUp").click(function (e) {
+  $(".content-slideUp").click(function(e) {
       e.preventDefault();
       var $el = $(this),
       content = $el.closest('.box').find(".box-content");
       content.slideToggle('fast', function(){
-         $el.find("i").toggleClass('icon-angle-up').toggleClass("icon-angle-down");
-         if(!$el.find("i").hasClass("icon-angle-up")){
+        $el.find("i").toggleClass('icon-angle-up').toggleClass("icon-angle-down");
+        if(!$el.find("i").hasClass("icon-angle-up")){
           if(content.hasClass('scrollable')) slimScrollUpdate(content);
-      } else {
+        } else {
           if(content.hasClass('scrollable')) destroySlimscroll(content);
-      }
-  });
+        }
+    });
   });
 
   $(".content-remove").click(function (e) {
@@ -848,10 +848,7 @@ function loadMyAdminMain(){
 	    sidebarFixed();
 	}
 	
-}
-
-$(document).ready(loadMyAdminMain);
-document.addEventListener("page:change", loadMyAdminMain);
+})
 
 $.fn.scrollBottom = function() { 
   return $(document).height() - this.scrollTop() - this.height(); 

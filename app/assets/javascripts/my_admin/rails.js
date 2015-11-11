@@ -156,117 +156,117 @@
 // 		if (this == event.target) enableFormElements($(this));
 // 	});
 // });
-
-var Rails = {
-	ALIASES: {
-		"create": "new",
-		"update": "edit"
-	},
-
-	ua: navigator.userAgent,
-
-	init: function() {
-		Rails.dispatcher();
-		Rails.browserName();
-	},
-	controllerName: function(){
-    return $("head meta[name=rails-controller]").attr("content");
-	},
-    actionName: function(){
-    return $("head meta[name=rails-action]").attr("content");
-    },
-	browserName: function() {
-		var css_name = null;
-		var matches = null;
-		var capable = true;
-
-		if (this.ua.match(/firefox/i)) {
-			css_name = "firefox";
-		} else if (this.ua.match(/safari/i)) {
-			css_name = "safari";
-		} else if (matches = this.ua.match(/msie (\d+)/i)) {
-			css_name = "ie ie" + matches[1];
-			capable = parseInt(matches[1] || 0) >= 7;
-		} else if (this.ua.match(/opera/i)) {
-			css_name = "opera";
-		} else if (this.ua.match(/mozilla/i)) {
-			css_name = "mozilla";
-		}
-
-		if (css_name) {
-			$("body")
-				.addClass("has-js")
-				.addClass(css_name)
-				.addClass(capable? "capable" : "");
-			return css_name;
-		}
-	},
-
-	dispatcher: function() {
-		var controller_name = $("head meta[name=rails-controller]").attr("content");
-		var action_name = $("head meta[name=rails-action]").attr("content");
-
-		action_name = Rails.ALIASES[action_name] || action_name;
-
-		// Executed before every controller action
-		if (Rails.before) {
-			for (var i = 0; i < Rails.before.length; i++) {
-				Rails.before[i]();
-			}
-		}
-
-		if (Rails[controller_name] && Rails[controller_name]['before']) {
-			// Executed before action from the current controller
-			for (var i = 0; i < Rails[controller_name]['before'].length; i++) {
-				Rails[controller_name]['before'][i]();
-			}
-		}
-
-		if (Rails[controller_name] && Rails[controller_name][action_name]) {
-			// Executed before any action from the current controller
-			for (var i = 0; i < Rails[controller_name][action_name].length; i++) {
-				Rails[controller_name][action_name][i]();
-			}
-		}
-	}
-};
-
-Rails.before = [];
-
-Rails.add = function(controller, action, func) {
-
-	if (!Rails[controller]) {
-		Rails[controller] = [];
-	}
-
-	if (typeof(action) == 'object') {
-		for (var key in action) {
-			if (!Rails[controller][key]) {
-				Rails[controller][key] = [];
-			}
-
-			Rails[controller][key].push(action[key]);
-		}
-	}
-	else {
-
-		if (!Rails[controller][action]) {
-			Rails[controller][action] = [];
-		}
-
-		Rails[controller][action].push(func);
-	}
-};
-
-
-(function($){
-	$.stopEvent = function(e) {
-		e.stopPropagation();
-		e.preventDefault();
-	};
-
-	$(document).ready(Rails.init);
-})(jQuery);
+// 
+// var Rails = {
+// 	ALIASES: {
+// 		"create": "new",
+// 		"update": "edit"
+// 	},
+// 
+// 	ua: navigator.userAgent,
+// 
+// 	init: function() {
+// 		Rails.dispatcher();
+// 		Rails.browserName();
+// 	},
+// 	controllerName: function(){
+//     return $("head meta[name=rails-controller]").attr("content");
+// 	},
+//     actionName: function(){
+//     return $("head meta[name=rails-action]").attr("content");
+//     },
+// 	browserName: function() {
+// 		var css_name = null;
+// 		var matches = null;
+// 		var capable = true;
+// 
+// 		if (this.ua.match(/firefox/i)) {
+// 			css_name = "firefox";
+// 		} else if (this.ua.match(/safari/i)) {
+// 			css_name = "safari";
+// 		} else if (matches = this.ua.match(/msie (\d+)/i)) {
+// 			css_name = "ie ie" + matches[1];
+// 			capable = parseInt(matches[1] || 0) >= 7;
+// 		} else if (this.ua.match(/opera/i)) {
+// 			css_name = "opera";
+// 		} else if (this.ua.match(/mozilla/i)) {
+// 			css_name = "mozilla";
+// 		}
+// 
+// 		if (css_name) {
+// 			$("body")
+// 				.addClass("has-js")
+// 				.addClass(css_name)
+// 				.addClass(capable? "capable" : "");
+// 			return css_name;
+// 		}
+// 	},
+// 
+// 	dispatcher: function() {
+// 		var controller_name = $("head meta[name=rails-controller]").attr("content");
+// 		var action_name = $("head meta[name=rails-action]").attr("content");
+// 
+// 		action_name = Rails.ALIASES[action_name] || action_name;
+// 
+// 		// Executed before every controller action
+// 		if (Rails.before) {
+// 			for (var i = 0; i < Rails.before.length; i++) {
+// 				Rails.before[i]();
+// 			}
+// 		}
+// 
+// 		if (Rails[controller_name] && Rails[controller_name]['before']) {
+// 			// Executed before action from the current controller
+// 			for (var i = 0; i < Rails[controller_name]['before'].length; i++) {
+// 				Rails[controller_name]['before'][i]();
+// 			}
+// 		}
+// 
+// 		if (Rails[controller_name] && Rails[controller_name][action_name]) {
+// 			// Executed before any action from the current controller
+// 			for (var i = 0; i < Rails[controller_name][action_name].length; i++) {
+// 				Rails[controller_name][action_name][i]();
+// 			}
+// 		}
+// 	}
+// };
+// 
+// Rails.before = [];
+// 
+// Rails.add = function(controller, action, func) {
+// 
+// 	if (!Rails[controller]) {
+// 		Rails[controller] = [];
+// 	}
+// 
+// 	if (typeof(action) == 'object') {
+// 		for (var key in action) {
+// 			if (!Rails[controller][key]) {
+// 				Rails[controller][key] = [];
+// 			}
+// 
+// 			Rails[controller][key].push(action[key]);
+// 		}
+// 	}
+// 	else {
+// 
+// 		if (!Rails[controller][action]) {
+// 			Rails[controller][action] = [];
+// 		}
+// 
+// 		Rails[controller][action].push(func);
+// 	}
+// };
+// 
+// 
+// (function($){
+// 	$.stopEvent = function(e) {
+// 		e.stopPropagation();
+// 		e.preventDefault();
+// 	};
+// 
+// 	$(document).ready(Rails.init);
+// })(jQuery);
 
 
 jQuery.extend(jQuery.fn, { flashMessage : function(message, type) { flashMessage(message, type); return this; } } );
