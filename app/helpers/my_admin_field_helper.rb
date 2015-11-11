@@ -31,9 +31,9 @@ module MyAdminFieldHelper
   end
 
   def field_setting(model, field, setting)
-    if model.my_admin.fields.has_key? field.to_s
-      if model.my_admin.fields[field.to_s].has_key? setting.to_s
-        model.my_admin.fields[field.to_s][setting.to_s]
+    if model.my_admin.fields.has_key? field
+      if model.my_admin.fields[field].has_key? setting
+        model.my_admin.fields[field][setting]
       end
     end
   end
