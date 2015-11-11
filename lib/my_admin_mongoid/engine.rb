@@ -6,6 +6,7 @@ class Engine < Rails::Engine
   config.assets.precompile += %w( my_admin/application.css my_admin/application_locked.css my_admin/application_off.css )
   config.assets.precompile += %w( my_admin/application.js my_admin/application_locked.js my_admin/application_off.js )
   config.assets.precompile += %w( my_admin_application.js my_admin_application_locked.js my_admin_application_off.js )
+  config.assets.precompile += %w( my_admin/custom.js my_admin/custom.css )
 
   config.to_prepare do
     ActionView::Base.send :include, MyAdminHelper
