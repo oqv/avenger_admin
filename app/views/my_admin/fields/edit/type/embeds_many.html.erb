@@ -38,13 +38,13 @@
 
 		<% columns = 0 %>
 		<%= form.fields_for(field, item) do |has_many_form| %>
-	    <tr>
+	    <tr class="item-embed-<%= item.id.to_s %>">
 		    <% has_many_model.my_admin.fieldsets.each do |fieldset| %>
 		    	<% fieldset[:fields].each do |has_many_field| %>
 		  		  <td>
-							<% if columns == 0 %>
-								<%= has_many_form.hidden_field :id %>
-							<% end %>
+							<%# if columns == 0 %>
+								<%#= has_many_form.hidden_field "_id" %>
+							<%# end %>
 
 							<%= edit_field_content(application, has_many_model, has_many_field, item, has_many_form) %>
 							<%= field_hint(application, has_many_model, has_many_field, 'bottom') %>
@@ -54,7 +54,16 @@
 		    <% end %>
 				<% if can_destroy and !read_only %>
 		      <td>
-		        <%= has_many_form.check_box '_destroy', :class => 'destroy' %>
+		        <%#= has_many_form.check_box '_destroy', :class => 'destroy' %>
+            <% unless item.new_record? %>
+              <%= link_to(destroy_embed_model_link(@application, item.class, item, @item), :class => "remove-item remove-item-embed", data: { confirm: 'Are you sure?', method: :delete }, remote: true ) do %>
+                <i class="icon-trash"></i>
+              <% end %>
+            <% else %>
+              <%= link_to('javascript:void[0];', :class => "remove-item remove-item-embed-new") do %>
+                <i class="icon-trash"></i>
+              <% end %>
+            <% end %>
 		      </td>
 					<% columns = columns + 1 %>
 				<% end %>
