@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "will_paginate_mongoid",   "~> 2.0.1"
   s.add_dependency "to_xls",                  "1.5.3"
   s.add_dependency "spreadsheet",             "0.9.7"
-  s.add_dependency "htmlentities",            "4.3.1"
+  s.add_dependency "htmlentities",            "4.3.4"
   s.add_dependency "ckeditor",                "~> 4.1.1"
 
   s.files         = `git ls-files`.split("\n")
