@@ -153,7 +153,7 @@ $(document).on('ready page:load', function(){
 	});
 
 	//HAS MANY ITEM
-  $(".add_new_has_many_item").click(function(e){
+  $(".add_new_has_many_item").on('click', function(e){
 			e.preventDefault();
 
       var limit = eval($(this).closest('.controls').find('.limit').val());
@@ -162,6 +162,8 @@ $(document).on('ready page:load', function(){
       var count = table.find('tr').length;
       var last = $(table.find('tr')[count - 1]);
       var clone = last.clone();
+
+      console.log(clone)
 
       clone.find('input, select').each(function(i, e){
           if($(this).attr('id'))
