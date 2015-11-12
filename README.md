@@ -1,4 +1,4 @@
-# Avenger Admin
+# Avenger Admin - MongoId
 
 > Um admin para Ruby on Rails
 
@@ -7,7 +7,7 @@
 Adicione em seu GemFile:
 
 ```ruby
-gem 'my_admin'
+gem 'my_admin_mongoid', github: 'valencar/avenger_admin', branch: 'mongodb'
 ```
 
 Execute o comando ‘bundle’ para atualizar o Gemfile.lock.
