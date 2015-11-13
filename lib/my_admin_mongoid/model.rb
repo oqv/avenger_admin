@@ -6,6 +6,7 @@ module MyAdmin
 
     def self.included(base)
       base.extend(ClassMethods)
+      #base.after_find :my_admin_tagfy_array_field
     end
 
     module ClassMethods
@@ -13,6 +14,11 @@ module MyAdmin
       # scope :my_admin_order, ->(params) {
       #   order_by("#{params[:order_by]} #{params[:order]}") if params[:order_by].present? and params[:order].present?
       # }
+
+      #def my_admin_tagfy_array_field
+
+      #end
+      #private :my_admin_tagfy_array_field
 
       def my_admin_order(params)
         if params[:order_by].present? and params[:order].present?

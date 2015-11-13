@@ -1,0 +1,5 @@
+<% klass = field_setting(model, field, :class) %>
+
+<% klass = "tags-input-admin" unless klass.present? %>
+
+<%= form.text_field field, :class => klass %>
