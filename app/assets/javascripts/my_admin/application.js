@@ -52,6 +52,7 @@
 //= require my_admin/plugins/datepicker/locales/bootstrap-datepicker.pt-BR
 //= require my_admin/plugins/timepicker/bootstrap-timepicker.min
 //= require my_admin/plugins/xeditable/bootstrap-editable.min
+//= require my_admin/plugins/tagsinput/jquery.tagsinput.min
 //= require my_admin/jquery.maskMoney
 //= require my_admin/jquery.dateFormat
 //= require my_admin/locale/pt-br/validate

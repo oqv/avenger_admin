@@ -58,6 +58,8 @@ var prepareFields = function(elem)
 	$(elem).find('.datepick').datepicker({ language: 'pt-BR' });
 
 	$(elem).find('input.price_format').maskMoney({thousands:'', decimal:'.', allowNegative:true, allowZero:true});
+
+  //$(elem).find('.tags-input-admin').tagsInput();
 }
 
 var zeroPad = function(num, places) {
