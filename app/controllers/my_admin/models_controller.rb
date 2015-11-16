@@ -72,22 +72,22 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
       @item.my_admin_user = my_admin_user
       if (@item.save)
         create_log(my_admin_user, @application, @model, @item, params[:action])
-        flash[:success] = "#{@model.title} adicionado com sucesso!"
-        redirect_to model_link(@application, @model, my_admin_cache_params)
-        #
-        # if params.member? :commit_edit
-        #   redirect_to edit_model_link(@application, @model, @item)
-        # elsif params.member? :commit_new
-        #   redirect_to new_model_link(@application, @model)
-        # elsif params.member? :commit_copy
-        #   redirect_to new_model_link(@application, @model, {:copy => @item.id})
-        # else
-        #   redirect_to model_link(@application, @model)
-        # end
-        #
+        
+        respond_to do |format|
+          format.html { flash[:success] = "#{@model.title} adicionado com sucesso!"; redirect_to model_link(@application, @model, my_admin_cache_params) }
+          format.json { render json: @item, status: 200 }
+          format.js
+        end
+
       else
         breadcrumbs.add(I18n.t('my_admin.titles.models.new', :model => @model.title))
-        render_model_template(:new)
+        
+        respond_to do |format|
+          format.html { render_model_template(:new) }
+          format.json { render json: @item, status: 422 }
+          format.js
+        end
+        
       end
     end
   end
@@ -107,21 +107,21 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
 
       if (@item.update_attributes(model_params)) # (params[@model.underscore]))
         create_log(my_admin_user, @application, @model, @item, params[:action])
-        flash[:success] = "#{@model.title} alterado com sucesso!"
-        redirect_to model_link(@application, @model, my_admin_cache_params)
 
-        # if params.member? :commit_edit
-        #   redirect_to edit_model_link(@application, @model, @item)
-        # elsif params.member? :commit_new
-        #   redirect_to new_model_link(@application, @model)
-        # elsif params.member? :commit_copy
-        #   redirect_to new_model_link(@application, @model, {:copy => @item.id})
-        # else
-        #  redirect_to model_link(@application, @model)
-        # end
+        respond_to do |format|
+          format.html { flash[:success] = "#{@model.title} alterado com sucesso!"; redirect_to model_link(@application, @model, my_admin_cache_params) }
+          format.json { render json: @item, status: 200 }
+          format.js
+        end
+
       else
         breadcrumbs.add(I18n.t('my_admin.titles.models.edit', :model => @model.title))
-        render_model_template(:edit)
+        
+        respond_to do |format|
+          format.html { render_model_template(:edit) }
+          format.json { render json: @item, status: 422 }
+          format.js
+        end
       end
     end
   end
