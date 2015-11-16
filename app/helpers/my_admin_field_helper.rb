@@ -11,8 +11,8 @@ module MyAdminFieldHelper
   end
 
   def field_title(model, field)
-    #I18n.t!("mongoid.attributes.#{model.i18n}.#{field}") rescue field.to_s.titleize
-    model.human_attribute_name(field)
+    I18n.t!("mongoid.attributes.#{model.i18n}.#{field}") rescue field.to_s.titleize
+    # model.human_attribute_name(field)
   end
 
   def field_collection(application, model, field, object)
