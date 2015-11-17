@@ -103,10 +103,16 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
   def update
     if verify_permission(:update)
       @item = @model.find(params[:id])
+      before_item = @item.to_json
       @item.my_admin_user = my_admin_user
 
       if (@item.update_attributes(model_params)) # (params[@model.underscore]))
-        create_log(my_admin_user, @application, @model, @item, params[:action])
+
+        if @model.my_admin.audit
+          create_log(my_admin_user, @application, @model, @item, params[:action], before_item, @item.to_json)
+        else
+          create_log(my_admin_user, @application, @model, @item, params[:action])
+        end
 
         respond_to do |format|
           format.html { flash[:success] = "#{@model.title} alterado com sucesso!"; redirect_to model_link(@application, @model, my_admin_cache_params) }

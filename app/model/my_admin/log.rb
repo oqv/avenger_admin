@@ -7,6 +7,8 @@ class MyAdmin::Log
   field :action,      :type => String
   field :model,       :type => String
   field :application, :type => String
+  field :before,      :type => String
+  field :after,       :type => String
 
   belongs_to :user
 

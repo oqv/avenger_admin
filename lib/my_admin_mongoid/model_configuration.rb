@@ -1,7 +1,7 @@
 module MyAdmin
   class ModelConfiguration
 
-    attr_accessor :collection, :member, :application, :list_display, :show_display, :export_display, :filters, :fieldsets, :fields, :permissions, :per_page
+    attr_accessor :collection, :member, :application, :list_display, :show_display, :export_display, :filters, :fieldsets, :fields, :permissions, :per_page, :audit
 
     def initialize(klass)
       begin
@@ -19,6 +19,7 @@ module MyAdmin
         @show_display = nil #(klass.columns.map{ |c| c.name } - ['id'])
         @export_display = nil #(klass.columns.map{ |c| c.name })
         @filters = nil
+        @audit = false
       rescue
       end
     end
