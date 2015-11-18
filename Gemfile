@@ -6,7 +6,7 @@ gemspec
 gem "breadcrumbs",    			  "0.1.6"
 gem "dynamic_form",   			  "1.1.4"
 gem "paperclip",      			  "3.5.1"
-gem "mongoid-paperclip",      "0.0.10"
+gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem "will_paginate_mongoid",  "~> 2.0.1"
 gem "to_xls",									"1.5.3"
 gem "spreadsheet",    			  "0.9.7"

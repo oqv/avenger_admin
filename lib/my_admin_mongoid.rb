@@ -5,6 +5,7 @@ require "dynamic_form"
 require "breadcrumbs"
 require "paperclip"
 require "ckeditor"
+require "mongoid_paperclip"
 
 require "my_admin_mongoid/engine"
 require "my_admin_mongoid/model"
