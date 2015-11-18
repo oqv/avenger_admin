@@ -9,6 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require my_admin/plugins/nprogress/nprogress
+ *= require my_admin/plugins/nprogress/nprogress-bootstrap
  *= require my_admin/bootstrap
  *= require my_admin/bootstrap-responsive
  *= require my_admin/plugins/jquery-ui/smoothness/jquery-ui
