@@ -57,6 +57,20 @@ var prepareFields = function(elem)
 	// datepicker
 	$(elem).find('.datepick').datepicker({ language: 'pt-BR' });
 
+	// datetimepicker
+	$(elem).find('.datetimepicker').datetimepicker({
+		locale: 'pt-br',
+		icons: {
+			time: "glyphicon-clock",
+    	date: "icon-calendar",
+    	up: "icon-circle-arrow-up",
+    	down: "icon-circle-arrow-down",
+		},
+		sideBySide: true
+	}).on('dp.change', function (ev) {
+    updateDateTimePickerValue($(ev.target).parent());
+	});;
+
 	$(elem).find('input.price_format').maskMoney({thousands:'', decimal:'.', allowNegative:true, allowZero:true});
 
   //$(elem).find('.tags-input-admin').tagsInput();
@@ -82,6 +96,15 @@ var updateDateTimeValue = function(elem, hours, minutes)
 		datetime = date + " " + time;
 
 	$(elem).find('.datetime').val(datetime);
+}
+
+var updateDateTimePickerValue = function(elem, hours, minutes)
+{	
+
+	var date = $(elem).find('.datetimepicker').val();
+
+	$(elem).find('.datetime').val(date);
+
 }
 
 var getTableSelected = function()
@@ -164,8 +187,6 @@ $(document).on('ready page:load', function(){
       var count = table.find('tr').length;
       var last = $(table.find('tr')[count - 1]);
       var clone = last.clone();
-
-      console.log(clone)
 
       clone.find('input, select').each(function(i, e){
           if($(this).attr('id'))
