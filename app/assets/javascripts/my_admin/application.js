@@ -57,6 +57,9 @@
 //= require my_admin/plugins/tagsinput/jquery.tagsinput.min
 //= require my_admin/jquery.maskMoney
 //= require my_admin/jquery.dateFormat
+//= require moment
+//= require moment/pt-br
+//= require bootstrap-datetimepicker
 //= require my_admin/locale/pt-br/validate
 //= require my_admin/eakroko
 //= require my_admin/main

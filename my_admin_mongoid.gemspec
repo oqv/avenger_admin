@@ -25,6 +25,8 @@ Gem::Specification.new do |s|
   s.add_dependency "spreadsheet",             "0.9.7"
   s.add_dependency "htmlentities",            "4.3.4"
   s.add_dependency "ckeditor",                "~> 4.1.1"
+  s.add_dependency "momentjs-rails",          ">= 2.9.0"
+  s.add_dependency "bootstrap3-datetimepicker-rails", "~> 4.14.30"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

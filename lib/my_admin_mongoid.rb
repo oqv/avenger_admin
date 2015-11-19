@@ -6,6 +6,8 @@ require "breadcrumbs"
 require "paperclip"
 require "ckeditor"
 require "mongoid_paperclip"
+require "bootstrap3-datetimepicker-rails"
+require "momentjs-rails"
 
 require "my_admin_mongoid/engine"
 require "my_admin_mongoid/model"

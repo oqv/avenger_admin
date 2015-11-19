@@ -13,6 +13,7 @@
  *= require my_admin/plugins/nprogress/nprogress-bootstrap
  *= require my_admin/bootstrap
  *= require my_admin/bootstrap-responsive
+ *= require bootstrap-datetimepicker
  *= require my_admin/plugins/jquery-ui/smoothness/jquery-ui
  *= require my_admin/plugins/jquery-ui/smoothness/jquery.ui.theme
  *= require my_admin/plugins/pageguide/pageguide
