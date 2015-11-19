@@ -177,10 +177,6 @@ $(document).on('ready page:load', function(){
 		updateDateTimeValue($(this).closest('.bootstrap-timepicker'));
 	});
 
-	$('.datetimepicker').on('change', function(e){
-		updateDateTimePickerValue($(this).closest('.bootstrap-timepicker'));
-	});
-
 	//HAS MANY ITEM
   $(".add_new_has_many_item").on('click', function(e){
 			e.preventDefault();
