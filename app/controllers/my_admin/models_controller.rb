@@ -68,6 +68,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
 
   def create
     if verify_permission(:create)
+
       @item = @model.new(model_params) #(params[@model.underscore])
       @item.my_admin_user = my_admin_user
       if (@item.save)
@@ -102,6 +103,7 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
 
   def update
     if verify_permission(:update)
+
       @item = @model.find(params[:id])
       before_item = @item.to_json
       @item.my_admin_user = my_admin_user
