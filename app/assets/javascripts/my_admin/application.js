@@ -27,6 +27,8 @@
 //= require my_admin/plugins/touch-punch/jquery.touch-punch.min
 //= require my_admin/plugins/slimscroll/jquery.slimscroll.min
 //= require my_admin/bootstrap
+//= require moment
+//= require moment/pt-br
 //= require my_admin/plugins/vmap/jquery.vmap.min
 //= require my_admin/plugins/vmap/jquery.vmap.world
 //= require my_admin/plugins/vmap/jquery.vmap.sampledata
@@ -43,6 +45,7 @@
 //= require my_admin/plugins/imagesLoaded/jquery.imagesloaded.min
 //= require my_admin/plugins/pageguide/jquery.pageguide
 //= require my_admin/plugins/fullcalendar/fullcalendar.min
+//= require my_admin/plugins/fullcalendar/lang-all
 //= require my_admin/plugins/chosen/chosen.jquery.min
 //= require my_admin/plugins/colorpicker/bootstrap-colorpicker
 //= require my_admin/plugins/select2/select2.min
@@ -57,8 +60,6 @@
 //= require my_admin/plugins/tagsinput/jquery.tagsinput.min
 //= require my_admin/jquery.maskMoney
 //= require my_admin/jquery.dateFormat
-//= require moment
-//= require moment/pt-br
 //= require bootstrap-datetimepicker
 //= require my_admin/locale/pt-br/validate
 //= require my_admin/eakroko

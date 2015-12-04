@@ -103,26 +103,26 @@ function loadMyAdminEakroko() {
 		});
 	}
 
-	// Calendar (fullcalendar)
-	if($('.calendar').length > 0)
-	{
-		$('.calendar').fullCalendar({
-			header: {
-				left: '',
-				center: 'prev,title,next',
-				right: 'month,agendaWeek,agendaDay,today'
-			},
-			buttonText:{
-				today:'Today'
-			},
-			editable: true
-		});
-		$(".fc-button-effect").remove();
-		$(".fc-button-next .fc-button-content").html("<i class='icon-chevron-right'></i>");
-		$(".fc-button-prev .fc-button-content").html("<i class='icon-chevron-left'></i>");
-		$(".fc-button-today").addClass('fc-corner-right');
-		$(".fc-button-prev").addClass('fc-corner-left');
-	}
+	// // Calendar (fullcalendar)
+	// if($('.calendar').length > 0)
+	// {
+	// 	$('.calendar').fullCalendar({
+	// 		header: {
+	// 			left: '',
+	// 			center: 'prev,title,next',
+	// 			right: 'month,agendaWeek,agendaDay,today'
+	// 		},
+	// 		buttonText:{
+	// 			today:'Today'
+	// 		},
+	// 		editable: true
+	// 	});
+	// 	$(".fc-button-effect").remove();
+	// 	$(".fc-button-next .fc-button-content").html("<i class='icon-chevron-right'></i>");
+	// 	$(".fc-button-prev .fc-button-content").html("<i class='icon-chevron-left'></i>");
+	// 	$(".fc-button-today").addClass('fc-corner-right');
+	// 	$(".fc-button-prev").addClass('fc-corner-left');
+	// }
 
 	// Tooltips (only for desktop) (bootstrap tooltips)
 	if(tooltipOnlyForDesktop)

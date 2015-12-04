@@ -18,7 +18,6 @@
  *= require my_admin/plugins/jquery-ui/smoothness/jquery.ui.theme
  *= require my_admin/plugins/pageguide/pageguide
  *= require my_admin/plugins/fullcalendar/fullcalendar
- *= require my_admin/plugins/fullcalendar/fullcalendar.print
  *= require my_admin/plugins/datatable/TableTools
  *= require my_admin/plugins/chosen/chosen
  *= require my_admin/plugins/select2/select2

@@ -22,3 +22,41 @@
   font-size: 20px;
   padding-top: 5px;
 }
+
+.calendar .fc-event-container .fc-content{
+  color: white;
+  font-size: 13px;
+}
+
+.calendar .fc-toolbar h2{
+  font-size: 20px;
+  display: inline-block;
+}
+
+.calendar .fc-prev-button{
+  background: #204e81;
+  color: white;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.calendar .fc-next-button{
+  background: #204e81;
+  color: white;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.calendar .fc-event{
+  background-color: #204e81;
+}
+
+.fc-ltr .fc-h-event.fc-not-end, .fc-rtl .fc-h-event.fc-not-start{
+  padding: 5px;
+  border-radius: 0;
+}
+
+.fc-ltr .fc-h-event.fc-not-start, .fc-rtl .fc-h-event.fc-not-end{
+  padding: 5px;
+  border-radius: 0; 
+}
