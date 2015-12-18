@@ -103,12 +103,11 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
 
   def update
     if verify_permission(:update)
-
       @item = @model.find(params[:id])
       before_item = @item.to_json
       @item.my_admin_user = my_admin_user
 
-      if (@item.update_attributes(model_params)) # (params[@model.underscore]))
+      if (@item.update(model_params)) # (params[@model.underscore])) # =>
 
         if @model.my_admin.audit
           create_log(my_admin_user, @application, @model, @item, params[:action], before_item, @item.to_json)
@@ -231,3 +230,8 @@ class MyAdmin::ModelsController < MyAdmin::MyAdminController
     end
 
 end
+
+# ~> NameError
+# ~> uninitialized constant MyAdmin
+# ~>
+# ~> /var/folders/2k/b4pxtkz920q3t9xw6cypm47c0000gq/T/seeing_is_believing_temp_dir20151218-28777-mlorvz/program.rb:1:in `<main>'
