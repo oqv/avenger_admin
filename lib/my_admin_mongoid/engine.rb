@@ -10,6 +10,7 @@ class Engine < Rails::Engine
   config.assets.precompile += %w( my_admin/favicon.ico )
   config.assets.precompile += %w( my_admin/apple-touch-icon-precomposed.png )
   config.assets.precompile += %w( my_admin/users/missing_mini.png )
+  config.assets.precompile += %w( my_admin/logo-big.png )
 
   config.to_prepare do
     ActionView::Base.send :include, MyAdminHelper
