@@ -80,7 +80,7 @@ class MyAdmin::User #< MyAdmin::Model
   }
 
   def permissions
-    @permissions ||= MyAdmin::Permission.by_user(self.id)
+    @permissions ||= MyAdmin::Permission.where(:group_ids.in => self.groups.map(&:id))
   end
 
   def superuser_export

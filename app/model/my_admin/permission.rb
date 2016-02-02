@@ -15,7 +15,8 @@ class MyAdmin::Permission
 
   def to_s
     application = MyAdmin::Application.find(self.application)
-    application.title + ">" + self.model.constantize.title + " - " + I18n.t("my_admin.permissions.#{self.name}")
+    title = application.title rescue I18n.t!("mongoid.applications.my_admin.#{self.application}")
+    title + " > " + self.model.constantize.title + " - " + I18n.t("my_admin.permissions.#{self.name}")
   end
 
   scope :by_user, lambda { |user_id|
